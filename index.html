@@ -148,6 +148,7 @@
             transition: transform 0.3s ease;
             border: 1px solid var(--border);
             min-width: 0;
+            /* <-- ESSENCIAL para evitar estouro */
         }
 
         .contact-card:hover {
@@ -165,11 +166,14 @@
             color: white;
             font-size: 1.5rem;
             flex-shrink: 0;
+            /* <-- EVITA encolher o ícone */
         }
 
         .contact-info {
             min-width: 0;
+            /* <-- PERMITE que o texto quebre */
             flex: 1;
+            /* <-- OCUPA o espaço disponível */
         }
 
         .contact-info h3 {
@@ -182,8 +186,11 @@
             font-weight: 600;
             color: var(--text);
             word-wrap: break-word;
+            /* <-- FORÇA a quebra de palavras longas */
             overflow-wrap: break-word;
+            /* <-- QUEBRA o email corretamente */
             max-width: 100%;
+            /* <-- GARANTE que não ultrapasse o card */
         }
 
         .btn-group {
@@ -195,8 +202,7 @@
         }
 
         .btn-primary,
-        .btn-secondary,
-        .btn-pdf {
+        .btn-secondary {
             padding: 1rem 2.5rem;
             border-radius: 50px;
             font-weight: 700;
@@ -227,16 +233,6 @@
         }
 
         .btn-secondary:hover {
-            transform: translateY(-3px);
-        }
-
-        .btn-pdf {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
-        }
-
-        .btn-pdf:hover {
             transform: translateY(-3px);
         }
 
@@ -704,8 +700,7 @@
             }
 
             .btn-primary,
-            .btn-secondary,
-            .btn-pdf {
+            .btn-secondary {
                 width: 100%;
                 justify-content: center;
                 padding: 0.8rem 1.5rem;
@@ -726,56 +721,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
-        /* Estilos para o PDF - impressão */
-        @media print {
-            .no-print {
-                display: none !important;
-            }
-            .header {
-                clip-path: none !important;
-                padding: 2rem 0 !important;
-            }
-            .contact-cards {
-                margin-top: 0 !important;
-            }
-            .btn-group,
-            .btn-small,
-            .btn-pdf {
-                display: none !important;
-            }
-            body {
-                background: white !important;
-            }
-            .timeline-content,
-            .skill-card,
-            .portfolio-card,
-            .grade-card,
-            .swot-card {
-                box-shadow: none !important;
-                border: 1px solid #ddd !important;
-            }
-            .swot-card {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            .header {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            .tag {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            .skill-bar-fill {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            .badge {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-        }
     </style>
 </head>
 <body>
@@ -793,18 +738,15 @@
                     <span class="tag"><i class="fas fa-graduation-cap"></i> Tecnóloga em Ciências de Dados - UNINTER 2026</span>
                     <span class="tag"><i class="fas fa-code"></i> JavaScript • Python • SQL</span>
                 </div>
-                <div class="btn-group no-print">
+                <div class="btn-group">
                     <a href="https://anadesenvolvedora.github.io/portifolio/#sobre" target="_blank" class="btn-primary">
                         <i class="fas fa-file-alt"></i> Ver Portfólio Completo
                     </a>
                     <a href="https://datadesh-site-da-empresa.github.io/servicosdigitais/#projetos" target="_blank" class="btn-secondary">
                         <i class="fas fa-briefcase"></i> Freelancer - Serviços Digitais
                     </a>
-                    <button onclick="gerarPDF()" class="btn-pdf">
-                        <i class="fas fa-file-pdf"></i> Baixar Currículo PDF
-                    </button>
                 </div>
-                <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center;" class="no-print">
+                <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center;">
                     <a href="https://github.com/datadeshsolucoes-design" target="_blank" class="btn-small">
                         <i class="fab fa-github"></i> GitHub Freelancer
                     </a>
@@ -816,7 +758,7 @@
         </div>
     </header>
 
-    <div class="container" id="conteudo-pdf">
+    <div class="container">
         <!-- Cards de Contato -->
         <div class="contact-cards">
             <div class="contact-card">
@@ -1094,7 +1036,7 @@
             <h2 class="section-title"><i class="fas fa-laptop-code"></i> Atuação como Freelancer</h2>
             <div style="background: linear-gradient(135deg, #f5f3ff, #ede9fe); padding: 2rem; border-radius: var(--radius); border-left: 4px solid #8b5cf6;">
                 <p style="font-size: 1.1rem; line-height: 1.8;">Ofereço serviços de <strong>desenvolvimento web</strong> para pequenos negócios, criando páginas estáticas, sites institucionais, landing pages e soluções personalizadas com HTML, CSS e JavaScript puro.</p>
-                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem;" class="no-print">
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem;">
                     <a href="https://datadesh-site-da-empresa.github.io/servicosdigitais/#projetos" target="_blank" class="btn-secondary" style="padding: 0.8rem 2rem; font-size: 1rem;">
                         <i class="fas fa-external-link-alt"></i> Conheça meu trabalho
                     </a>
@@ -1146,32 +1088,5 @@
         </div>
         <p style="margin-top: 2rem; font-size: 0.8rem; opacity: 0.5;">© 2026 • Portfólio desenvolvido com base na minha trajetória profissional.</p>
     </footer>
-
-    <script>
-        function gerarPDF() {
-            // Mostra uma mensagem de carregamento
-            const btn = document.querySelector('.btn-pdf');
-            const textoOriginal = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando PDF...';
-            btn.disabled = true;
-
-            // Usa window.print() que gera um PDF da página
-            // O @media print já está configurado para esconder botões e ajustar o layout
-            setTimeout(() => {
-                window.print();
-                btn.innerHTML = textoOriginal;
-                btn.disabled = false;
-            }, 500);
-        }
-
-        // Detecta quando a impressão foi cancelada ou concluída
-        window.addEventListener('afterprint', function() {
-            const btn = document.querySelector('.btn-pdf');
-            if (btn) {
-                btn.innerHTML = '<i class="fas fa-file-pdf"></i> Baixar Currículo PDF';
-                btn.disabled = false;
-            }
-        });
-    </script>
 </body>
 </html>
